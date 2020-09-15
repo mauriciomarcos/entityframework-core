@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EntityFrameworkCore.Domain.Interface.Repository.Common
 {
-    public interface IRepositoryBase<TEntity> : IDisposable where TEntity : class
+    public interface IRepositoryBase<TEntity> where TEntity : class
     {
         void Add(TEntity e);
         TEntity GetById(int? id);

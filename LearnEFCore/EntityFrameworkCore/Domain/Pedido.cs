@@ -14,6 +14,6 @@ namespace EntityFrameworkCore.Domain
         public TipoFrete TipoFrete { get; set; }
         public StatusPedido StatusPedido { get; set; }
         public string Observacao { get; set; }
-        public ICollection<PedidoItem> MyProperty { get; set; }
+        public ICollection<PedidoItem> ItensPedido { get; set; }
     }
 }

@@ -1,45 +1,54 @@
 ﻿using EntityFrameworkCore.Data.Context;
 using EntityFrameworkCore.Domain.Interface.Repository.Common;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EntityFrameworkCore.Data.Repository.Common
 {
     public abstract class EFRepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
-    {
-        protected readonly DataBaseContext _db;
-
-        public EFRepositoryBase(DataBaseContext context) =>
-            _db = context;
-
-        public void Add(TEntity e)
+    {     
+        public virtual void Add(TEntity e)
         {
-            _db.Add(e);
-            _db.SaveChanges();
+            using (DataBaseContext _db = new DataBaseContext())
+            {
+                _db.Add(e);
+                _db.SaveChanges();
+            }            
         }
 
-        public void Dispose()
+        public virtual IEnumerable<TEntity> GetAll()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> GetAll()
-        {
-            throw new System.NotImplementedException();
+            using (DataBaseContext _db = new DataBaseContext())
+            {
+                return _db.Set<TEntity>().ToList();
+            }
         }
 
         public TEntity GetById(int? id)
         {
-            throw new System.NotImplementedException();
+            using (DataBaseContext _db = new DataBaseContext())
+            {
+                return _db.Set<TEntity>().Find(id);
+            }
         }
 
         public void Remove(TEntity e)
         {
-            throw new System.NotImplementedException();
+            using (DataBaseContext _db = new DataBaseContext())
+            {
+                _db.Set<TEntity>().Remove(e);
+                _db.SaveChanges();
+            }
         }
 
         public void Update(TEntity e)
         {
-            throw new System.NotImplementedException();
+            using (DataBaseContext _db = new DataBaseContext())
+            {
+                _db.Entry(e).State = EntityState.Modified;
+                _db.SaveChanges();
+            }
         }
     }
 }

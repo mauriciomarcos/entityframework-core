@@ -10,10 +10,30 @@ namespace EntityFrameworkCore.Data.EntityMap
         {
             builder.ToTable("Cliente");
 
-            builder.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .IsRequired()
-                .HasColumnType("INTEGER");
+            builder.HasKey(e => e.Id);
+
+            builder.Property(e => e.Nome)
+                .HasColumnType("VARCHAR(80)")
+                .IsRequired();
+
+            builder.Property(e => e.Telefone)
+                .HasColumnType("CHAR(11)");
+
+            builder.Property(e => e.CEP)
+                .HasColumnType("CHAR(8)")
+                .IsRequired();
+
+            builder.Property(e => e.Estado)
+                .HasColumnType("CHAR(2)")
+                .IsRequired();
+
+            // o HasMaxLength cria oum NVARCHAR na base de dados
+            builder.Property(e => e.Cidade)
+                .HasMaxLength(60)
+                .IsRequired();
+
+            builder.HasIndex(ix => ix.Telefone)
+                .HasName("ix_cliente_telefone");
         }
     }
 }
