@@ -24,7 +24,16 @@ namespace EntityFrameworkCore.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ClienteMap());
+            /*
+             * Realizando a configuração dessa forma, não é necessário informar todos as 
+             * class de Mapping que for configurada para a aplicação, como por exemplo: modelBuilder.ApplyConfiguration(new ClienteMap());
+             * 
+             * Utilizando o modelBuilder.ApplyConfigurationsFromAssembly e informando uma classe
+             * que está contida dentro do assembly das classes de configuração, o Entity Framework Core
+             * realizará um verificação no warm-up da aplicação e aplicará a configuração para todas as 
+             * classes que implementarem a interface IEntityTypeConfiguration
+             */
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ClienteMap).Assembly);
         }
     }
 }
