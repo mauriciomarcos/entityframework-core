@@ -9,4 +9,45 @@ Os Providres disponíveis para o Entity Framework Core podem ser verificados nes
 
 
 ### Migrations
-Para utilizar esse recurso, é necessário que seja incorporado ao seu projeto o pacote Microsoft.EntityFrameworkCore.Design. Esse pacote é responsável por prover um conjunto de métodos responsáveis para manipulação dos comandos de Migrations. Além do pacote supramencionado, para que possamos interagir com o EFCore, há a necessidade de adicionarmos o pacote Microsoft.EntityFrameworkCore.Tools.
+Para utilizar esse recurso, é necessário que seja incorporado ao seu projeto o pacote Microsoft.EntityFrameworkCore.Design. Esse pacote é responsável por prover um conjunto de métodos responsáveis para manipulação dos comandos de Migrations. Além do pacote supramencionado, para que possamos interagir com o EFCore, há a necessidade de adicionarmos o pacote Microsoft.EntityFrameworkCore.Tools. 
+
+Com os pacotes devidamente instalados, ao executarmos o comando get-help EntityFramework no Package Manager Console, teremos o seguinte resultado:
+
+                     _/\__
+               ---==/    \\
+         ___  ___   |.    \|\
+        | __|| __|  |  )   \\\
+        | _| | _|   \_/ |  //|\\
+        |___||_|       /   \\\/\\
+
+TOPIC
+    about_EntityFrameworkCore
+
+SHORT DESCRIPTION
+    Provides information about the Entity Framework Core Package Manager Console Tools.
+
+LONG DESCRIPTION
+    This topic describes the Entity Framework Core Package Manager Console Tools. See https://docs.efproject.net for
+    information on Entity Framework Core.
+
+    The following Entity Framework Core commands are available.
+        Cmdlet                      Description
+        --------------------------  ---------------------------------------------------
+        Add-Migration               Adds a new migration.
+        Drop-Database               Drops the database.
+        Get-DbContext               Gets information about a DbContext type.
+        Remove-Migration            Removes the last migration.
+        Scaffold-DbContext          Scaffolds a DbContext and entity types for a database.
+        Script-DbContext            Generates a SQL script from the current DbContext. 
+        Script-Migration            Generates a SQL script from migrations.
+        Update-Database             Updates the database to a specified migration.
+
+SEE ALSO
+    Add-Migration
+    Drop-Database
+    Get-DbContext
+    Remove-Migration
+    Scaffold-DbContext
+    Script-DbContext
+    Script-Migration
+    Update-Database
