@@ -9,4 +9,4 @@ Os Providres disponíveis para o Entity Framework Core podem ser verificados nes
 
 
 ### Migrations
-Para utilizar esse recurso, é necessário que seja incorporado ao seu projeto o pacote Microsoft.EntityFrameworkCore.Design. Esse pacote é responsável por prover um conjunto de métodos responsáveis para manipulação dos comandos de Migrations.
+Para utilizar esse recurso, é necessário que seja incorporado ao seu projeto o pacote Microsoft.EntityFrameworkCore.Design. Esse pacote é responsável por prover um conjunto de métodos responsáveis para manipulação dos comandos de Migrations. Além do pacote supramencionado, para que possamos interagir com o EFCore, há a necessidade de adicionarmos o pacote Microsoft.EntityFrameworkCore.Tools.
