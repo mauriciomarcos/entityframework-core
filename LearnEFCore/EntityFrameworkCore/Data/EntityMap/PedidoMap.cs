@@ -13,7 +13,7 @@ namespace EntityFrameworkCore.Data.EntityMap
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.DataInicio)
-                .HasDefaultValue("GETDATE()")
+                .HasDefaultValueSql("GETDATE()")
                 .ValueGeneratedOnAdd();
 
             builder.Property(e => e.StatusPedido)
