@@ -53,4 +53,8 @@ SEE ALSO
     Update-Database
     
 As Migrations provê uma forma eficaz de versionar o modelo de dados, podendo realizar um undo sempre que necessário no contexto do projeto. Comando para realizar uma Migration do modelo de domínio da aplicação mapeada com o Fluente API para uma base de dados: Add-Migration MigracaoInicialProjeto -c DataBaseContext, onde o parâmetro -c indica o nome da classe de contexto da aplicação e é útil quando há mais de uma contexto de banco de dados no mesmo projeto.
+O controle das alterações e versionamento da estrutuda do modelo de dados são controlados pelos arquivos gerado a partir do comand Add-Migration
+  1. 20200916200109_MigracaoInicialProjeto.cs => Contém o método Up() e Down() que são responsáveis por evoluir ou reverver uma migração
+  2. 20200916200109_MigracaoInicialProjeto.Designer.cs => Possui os metadados da estrutuda de mapeamento das classes da aplicação no momento aplicação. É a versão atual.
+  3. DataBaseContextModelSnapshot.cs => Esse aquivo é gerado apenas na primeira migração e nas migrações posteriores, o EFCore saberá quais instruções devem ser adicionadas    ou removidas no modelo de dados, mantendo a integridade do modelo. :tw-1f3c6:
     
