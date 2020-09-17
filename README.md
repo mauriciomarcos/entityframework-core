@@ -65,4 +65,9 @@ O controle das alterações e versionamento da estrutuda do modelo de dados são
  
  ### Aplicando as alterações da Migration
  Para aplicar as alterações realizadas pela migração diretamente pelo Package Manager Console, uma vez que se tenha acessoa ao servidor de banco de dados, basta executar o comando: Update-Database -v, onde o parâmetro -v fará com que o prompt do Package Manager Console apresente todos os comandos que estão sendo executados contra a base de dados de destino. 
+ 
+ ### Considerações importantes sobre o Migration
+ Quando realizamos uma alteração em uma classe de domínio, por exemplo adicionando uma nova propriedade como NomeCliente do tipo string, ao ser executado o comando Add-Migration e posteriormento o Update-Database, o EFCore criará esse novo campo na base de dados como o NomeCliente com os valores default, pois não houve qualquer configuração na classe de mapeamento (classe que implementa o IEntityTypeConfiguration<Cliente> - para o exemplo). Então é importante ter em mente que os ajustes finos da propriedade que está sendo alterado no modelo de domínio, também deverá ser configurada nas classes de mapeamento.
+  
+  Para reverver qualquer realizada na base de dados, é utilizado o comando Update-Database <target-da-migração> -v, onde o target-da-migração é o nome da Migration que deseja-se posicionar a base de dados, ou seja, o <target-da-migração> é a posicição da base de dados que o desevolvedor pretente posicionar a base de dados. Após isso, caso é recomendado realizar o comando Remove-Migration <nome-da-migrations-que-será-removida> para remover o arquivo correspondente a migration, evitando que em futuras aplicações de Migrations, essas atualizações não seja aplicadas.
     
