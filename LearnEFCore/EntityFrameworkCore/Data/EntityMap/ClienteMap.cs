@@ -32,6 +32,10 @@ namespace EntityFrameworkCore.Data.EntityMap
                 .HasMaxLength(60)
                 .IsRequired();
 
+            builder.Property(e => e.Email)
+                .HasMaxLength(200)
+                .IsRequired();
+
             builder.HasIndex(ix => ix.Telefone)
                 .HasName("ix_cliente_telefone");
         }
