@@ -57,4 +57,7 @@ O controle das alterações e versionamento da estrutuda do modelo de dados são
   1. 20200916200109_MigracaoInicialProjeto.cs => Contém o método Up() e Down() que são responsáveis por evoluir ou reverver uma migração
   2. 20200916200109_MigracaoInicialProjeto.Designer.cs => Possui os metadados da estrutuda de mapeamento das classes da aplicação no momento aplicação. É a versão atual.
   3. DataBaseContextModelSnapshot.cs => Esse aquivo é gerado apenas na primeira migração e nas migrações posteriores, o EFCore saberá quais instruções devem ser adicionadas    ou removidas no modelo de dados, mantendo a integridade do modelo. :tw-1f3c6:
+  
+  ### Exportando o script SQL gerado pela Migration para um arquivo
+ Para exportar o script gerado a partir da migração executada, deve-se utilizar o comando Script-Migration -o c:\MigracaoInicialProjeto.sql, por intermédio do Package Manager Console, onde o parâmetro -o c:\MigracaoInicialProjeto.sql é o path e nome do arquivo .sql que conterá as instruções DDL para ser executada na base de dados de destino. Muito útil quando não se tem acesso ao servidor de banco de dados ao qual queremos realizar a migração.
     
