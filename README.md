@@ -60,4 +60,7 @@ O controle das alterações e versionamento da estrutuda do modelo de dados são
   
   ### Exportando o script SQL gerado pela Migration para um arquivo
  Para exportar o script gerado a partir da migração executada, deve-se utilizar o comando Script-Migration -o c:\MigracaoInicialProjeto.sql, por intermédio do Package Manager Console, onde o parâmetro -o c:\MigracaoInicialProjeto.sql é o path e nome do arquivo .sql que conterá as instruções DDL para ser executada na base de dados de destino. Muito útil quando não se tem acesso ao servidor de banco de dados ao qual queremos realizar a migração.
+ 
+ ### Aplicando as alterações da Migration
+ Para aplicar as alterações realizadas pela migração diretamente pelo Package Manager Console, uma vez que se tenha acessoa ao servidor de banco de dados, basta executar o comando: Update-Database -v, onde o parâmetro -v fará com que o prompt do Package Manager Console apresente todos os comandos que estão sendo executados contra a base de dados de destino. 
     
