@@ -4,6 +4,7 @@ using EntityFrameworkCore.Domain.Interface.Repository;
 
 namespace EntityFrameworkCore.Data.Repository
 {
-    public class ClienteRepository : EFRepositoryBase<Cliente>, IClienteRepository
-    { }
+    public class PedidoRepository : EFRepositoryBase<Pedido>, IPedidoRepository
+    {
+    }
 }

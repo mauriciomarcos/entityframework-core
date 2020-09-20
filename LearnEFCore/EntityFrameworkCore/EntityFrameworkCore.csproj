@@ -24,8 +24,4 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\Interface\" />
-  </ItemGroup>
-
 </Project>

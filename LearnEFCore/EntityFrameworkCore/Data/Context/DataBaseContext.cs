@@ -15,10 +15,11 @@ namespace EntityFrameworkCore.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+   
             // Necessário instalar pacote Microsoft.Extensions.Configuration.Json
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appSettings.json")
                 .Build();
 
             // Necessário instalar o pacote Microsoft.EntityFrameworkCore.SqlServer (provider SQL SERVER)
