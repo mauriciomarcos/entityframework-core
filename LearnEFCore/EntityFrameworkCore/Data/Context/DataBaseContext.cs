@@ -2,20 +2,23 @@
 using EntityFrameworkCore.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System.IO;
 
 namespace EntityFrameworkCore.Data.Context
 {
     public class DataBaseContext : DbContext
     {
+        // Necessário instalar o pacote Microsoft.Extensions.Logging.Console
+        private static readonly ILoggerFactory _logger = LoggerFactory.Create(param => param.AddConsole());
+
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<PedidoItem> PedidoItens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-   
+        {       
             // Necessário instalar pacote Microsoft.Extensions.Configuration.Json
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -23,7 +26,11 @@ namespace EntityFrameworkCore.Data.Context
                 .Build();
 
             // Necessário instalar o pacote Microsoft.EntityFrameworkCore.SqlServer (provider SQL SERVER)
-            optionsBuilder.UseSqlServer(config.GetConnectionString("stringConnectionPedidosDB"));
+            optionsBuilder
+                .UseLoggerFactory(_logger)
+                // Habilitado o EnableSensitiveDataLogging para poder visualizar os valores dos parâmentos no log do console
+                .EnableSensitiveDataLogging()
+                .UseSqlServer(config.GetConnectionString("stringConnectionPedidosDB"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

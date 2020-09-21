@@ -19,9 +19,9 @@ namespace EntityFrameworkCore
         static void Main(string[] args)
         {
             // Inserindo registro de uma única instância de Cliente à base de dados
-            //var cliente = clientefactory();
-            //_clienterepository.add(cliente);
-            //console.writeline($"adicionado o cliente {cliente.nome} adicionado!");
+            //var cliente = ClienteFactory();
+            //_clienteRepository.Add(cliente);
+            //Console.WriteLine($"adicionado o cliente {cliente.Nome} adicionado!");
 
             /*
              * Inserindo: Composição completa de um pedido:
@@ -36,7 +36,7 @@ namespace EntityFrameworkCore
 
         private static Pedido PedidoFactory()
         {
-            var cliente = ClienteFactory();
+            var cliente = _clienteRepository.GetById(14);
             var produto = new Produto
             {
                 Descricao = "Smart Phone Moto",
@@ -53,7 +53,7 @@ namespace EntityFrameworkCore
             };
             var pedido = new Pedido
             {
-                Cliente = cliente,
+                ClienteId = cliente.Id,
                 DataInicio = DateTime.Now,
                 Observacao = "Entrega expressa",
                 TipoFrete = TipoFrete.CIF,
