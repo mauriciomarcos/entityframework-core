@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using System.Linq;
 
 namespace EntityFrameworkCore.Data.Context
 {
@@ -45,6 +46,30 @@ namespace EntityFrameworkCore.Data.Context
              * classes que implementarem a interface IEntityTypeConfiguration
              */
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ClienteMap).Assembly);
+
+            // Chamada para o método de configuração default
+            DefautMappingConfiguration(modelBuilder);
+        }
+
+        private void DefautMappingConfiguration(ModelBuilder modelBuilder)
+        {
+            // Iterando a lista de Entidades da Aplicação
+            foreach (var entity in modelBuilder.Model.GetEntityTypes())
+            {
+                // Obter todas as propriedades (IEnumerable) da Entidade corrente do tipo string
+                var properties = entity.GetProperties().Where(p => p.ClrType == typeof(string));
+
+                // Iterando cada uma das propriedade para validar se a mesma foi confugurada ou se devemos adicionar o valor Default
+                foreach (var propertyValue in properties)
+                {
+                     //Verifica se a propriedade possui um valor já configurado e se não tem nenhum tamanho definido                     
+                    if (string.IsNullOrEmpty(propertyValue.GetColumnType()) && !propertyValue.GetMaxLength().HasValue)
+                    {
+                        // Definindo o tamanho default para os campos do tipo string
+                        propertyValue.SetColumnType("VARCHAR(100)");
+                    }
+                }
+            }
         }
     }
 }

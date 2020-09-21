@@ -40,5 +40,13 @@ namespace EntityFrameworkCore.Data.Repository.Common
             _db.Entry(e).State = EntityState.Modified;
             _db.SaveChanges();
         }
+
+        public void DisconnectedUpdate(TEntity e, object objValues)
+        {
+            using DataBaseContext _db = new DataBaseContext();
+            _db.Attach(e);
+            _db.Entry(e).CurrentValues.SetValues(objValues);
+            _db.SaveChanges();
+        }
     }
 }

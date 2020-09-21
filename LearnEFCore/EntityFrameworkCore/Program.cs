@@ -30,8 +30,24 @@ namespace EntityFrameworkCore
              *  3- Produto
              *  4- ItemPedido
              */
-            var pedido = PedidoFactory();
-            _pedidoRepository.Add(pedido);
+            //var pedido = PedidoFactory();
+            //_pedidoRepository.Add(pedido);
+
+            //Atualizando dados
+            //var cliente = _clienteRepository.GetById(14);
+            //cliente.Nome = "Anthony de Campos Marcos";
+
+            var cliente = new Cliente
+            {
+                Id = 14
+            };
+
+            var cli = new
+            {
+                Nome = "Juliana de Campos Coelho Marcos",
+            };
+
+            _clienteRepository.DisconnectedUpdate(cliente, cli);
         }
 
         private static Pedido PedidoFactory()

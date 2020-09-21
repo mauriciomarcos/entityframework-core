@@ -9,6 +9,7 @@ namespace EntityFrameworkCore.Domain.Interface.Repository.Common
         TEntity GetById(int? id);
         IEnumerable<TEntity> GetAll();
         void Update(TEntity e);
+        void DisconnectedUpdate(TEntity e, object objValues);
         void Remove(TEntity e);
     }
 }
