@@ -10,10 +10,10 @@ Os Providres disponíveis para o Entity Framework Core podem ser verificados nes
 ### DbContext
 A classe DbContext do Entity Framework Core representa uma sessão com um banco de dados dentro da aplicação. Essa classe provê um API que possibilita a comunicação com a base de dados, possibilitando:
     1. Conexão com a base de dados
-    2. Manipulação de dados como consultas e mecanismos de persistência
-    3. Mapeamento de dados (Data Mapping)
-    4. Gerenciamento de transação
-    5. Rastreamento de mudanças (Change Traching), onde são detectadas todas as alterações realizadas na entidade e o EFCore, a partir dessas alterações, modifica o estado do        objeto (EntityState) conforme as rastreadas.
+    1. Manipulação de dados como consultas e mecanismos de persistência
+    1. Mapeamento de dados (Data Mapping)
+    1. Gerenciamento de transação
+    1. Rastreamento de mudanças (Change Traching), onde são detectadas todas as alterações realizadas na entidade e o EFCore, a partir dessas alterações, modifica o estado do        objeto (EntityState) conforme as rastreadas.
 
 ### Migrations
 Para utilizar esse recurso, é necessário que seja incorporado ao seu projeto o pacote Microsoft.EntityFrameworkCore.Design. Esse pacote é responsável por prover um conjunto de métodos responsáveis para manipulação dos comandos de Migrations. Além do pacote supramencionado, para que possamos interagir com o EFCore, há a necessidade de adicionarmos o pacote Microsoft.EntityFrameworkCore.Tools. 
