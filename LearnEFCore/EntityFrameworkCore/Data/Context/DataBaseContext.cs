@@ -3,6 +3,7 @@ using EntityFrameworkCore.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -30,10 +31,18 @@ namespace EntityFrameworkCore.Data.Context
             optionsBuilder
                 .UseLoggerFactory(_logger)
                 // Habilitado o EnableSensitiveDataLogging para poder visualizar os valores dos parâmentos no log do console
-                .EnableSensitiveDataLogging()
-                .UseSqlServer(config.GetConnectionString("stringConnectionPedidosDB"));
+                .EnableSensitiveDataLogging()                
+                .UseSqlServer(config
+                    .GetConnectionString("stringConnectionPedidosDB"),
+                    /* o argumento passado p => p.EnableRetryOnFailure() habilita a relisiência na conexão em caso de falhas, 
+                     * haverá 6 tentativas em 1 minuti por padrão. Com configuração abaixo, o Entity Framework tentará se reconectar
+                     * novamente a base de dados por duas vezes, em um intervalo de 5 segundos entre as tentativas.
+                     */
+                    p => p.EnableRetryOnFailure(maxRetryCount: 2, maxRetryDelay: TimeSpan.FromSeconds(5), errorNumbersToAdd: null)
+                    // Sobrescreve o nome default da tabela de Migrations criada automaticamente pelo Entity Framework Core.
+                    .MigrationsHistoryTable("HistoricoMigrations")
+                 );
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             /*
