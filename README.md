@@ -7,6 +7,13 @@ Mas o que possibilita essa abstração entre os diferentes tipos de banco de dad
 O ADO.NET pode ser entendido como uma especificação que os bancos de dados, como: PostigreSQL, MySQL SQLite, Oracle, SQL Server dentre outros devem implementar, dando origem assim aos providres que acessam de fato os dados de uma base de dados. Dessa forma, pode-se concluir que o EF Core (Entity Framework Core) atua na camada mais alta de acesso aos dados, entre o ADO.NET e os providres que implementam os métodos de acesso aos dados.
 Os Providres disponíveis para o Entity Framework Core podem ser verificados nesse link da documentação oficial da Microsoft: https://docs.microsoft.com/pt-br/ef/core/providers/?tabs=dotnet-core-cli
 
+### DbContext
+A classe DbContext do Entity Framework Core representa uma sessão com um banco de dados dentro da aplicação. Essa classe provê um API que possibilita a comunicação com a base de dados, possibilitando:
+    1. Conexão com a base de dados
+    2. Manipulação de dados como consultas e mecanismos de persistência
+    3. Mapeamento de dados (Data Mapping)
+    4. Gerenciamento de transação
+    5. Rastreamento de mudanças (Change Traching), onde são detectadas todas as alterações realizadas na entidade e o EFCore, a partir dessas alterações, modifica o estado do        objeto (EntityState) conforme as rastreadas.
 
 ### Migrations
 Para utilizar esse recurso, é necessário que seja incorporado ao seu projeto o pacote Microsoft.EntityFrameworkCore.Design. Esse pacote é responsável por prover um conjunto de métodos responsáveis para manipulação dos comandos de Migrations. Além do pacote supramencionado, para que possamos interagir com o EFCore, há a necessidade de adicionarmos o pacote Microsoft.EntityFrameworkCore.Tools. 
